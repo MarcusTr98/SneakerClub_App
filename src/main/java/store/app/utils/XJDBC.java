@@ -14,7 +14,7 @@ public class XJDBC {
     private static String driver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
     private static String dburl="jdbc:sqlserver://localhost;database=QuanLyBanHang";
     private static String username="sa";
-    private static String password="minhhieu21";
+    private static String password="123";
     public static store.app.utils.clsConnectDB connection = new  store.app.utils.clsConnectDB ();   
     /*
     * Nạp driver

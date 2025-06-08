@@ -16,14 +16,12 @@ public class TestConnect {
      * @param args the command line arguments
      */
      public static void main(String []agrs){
-    Connection connec;
+    Connection connect;
     String url;
     try{
-        url= "jdbc:sqlserver://localhost:1433;databaseName=QuanLyBanHang;user=sa;password=minhhieu21";
-        //url= "jdbc:mysql://localhost:3306/edusys";
+        url= "jdbc:sqlserver://localhost:1433;databaseName=QuanLyBanHang;user=sa;password=123";
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        //Class.forName("com.mysql.jdbc.Driver");//my sql
-        connec= DriverManager.getConnection(url);
+        connect= DriverManager.getConnection(url);
         System.out.println("ok");
     }catch(Exception ex){
             ex.printStackTrace();

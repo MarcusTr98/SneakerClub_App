@@ -6,6 +6,7 @@ Create database QuanLyBanHang
 go
 use QuanLyBanHang
 
+
 ------------------------------------------------------------------------------------------------
 /* cập nhật số lượng sản phẩm trong kho sau khi thêm sản phẩm hoặc cập nhật hóa đơn chi tiết*/
 if OBJECT_ID ('trg_ThemHDCT') is not null
@@ -140,9 +141,13 @@ BEGIN
 		END
 	RETURN @ID
 END
-
 -----------------------------------------------------------------------------------------------------
-
+/* câu lệnh tạo bảng danh mục sản phẩm*/
+Create table DanhMucSP(
+	MaDM int not null Identity (1,1),
+	TenDanhMuc nvarchar(50) not null,
+	primary key  (MaDM asc) 
+);
 
 /* câu lệnh tạo bảng khách hàng */
 Create Table KhachHang(
@@ -152,13 +157,6 @@ Create Table KhachHang(
 	Sdt varchar(20),
 	Email varchar(50),
 	Thanhvien bit,
-);
-
-/* câu lệnh tạo bảng danh mục sản phẩm*/
-Create table DanhMucSP(
-	MaDM int not null Identity (1,1),
-	TenDanhMuc nvarchar(50) not null,
-	primary key  (MaDM asc) 
 );
 
 /* câu lệnh tạo bảng sản phẩm*/
@@ -246,7 +244,7 @@ insert into SanPham values ([dbo].[AUTO_MaSP](),N'T-Shirt Nike x Bape',200,250,'
 
 
 /*Insert dữ liệu vào bảng nhân viên */
-insert into NhanVien values ([dbo].[AUTO_MaNV](),N'Trương Minh Hiếu',1,N'Quảng Nam','0372795594','20020421','123',1);
+insert into NhanVien values ([dbo].[AUTO_MaNV](),N'Marcus Trần',1,N'Hải Phòng','0907640098','19980222','123',1);
 insert into NhanVien values ([dbo].[AUTO_MaNV](),N'Hồ Đắc Danh',1,N'Quảng Nam','0378492759','20000504','123',0);
 insert into NhanVien values ([dbo].[AUTO_MaNV](),N'Bùi Thị Xuân Hồng',0,N'Đà Nẵng','0358250091','19991205','123',0);
 insert into NhanVien values ([dbo].[AUTO_MaNV](),N'Nguyễn Văn Hoàng',1,N'Quảng Nam','0328617453','20011020','123',0);
@@ -652,6 +650,7 @@ select * from HoaDon
 if OBJECT_ID ('test') is not null
 	drop view test
 go
+
 CREATE VIEW test As
 
 select hd.MaHDBan,hd.NgayBan,nv.MaNV,nv.TenNV, SUM(((sp.DonGiaBan*ct.SoLuong)*(100-ct.GiamGia)/100)) as TongTien,
